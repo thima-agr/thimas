@@ -6,6 +6,16 @@ export default defineNuxtConfig({
 
   css: ['@/assets/css/global.css'],
 
+  runtimeConfig: {
+    public: {
+      secretJwt: 'TxOZ$-auth-token',
+    },
+  },
+
+  build: {
+    transpile: ['maska'],
+  },
+
   colorMode: {
     preference: 'light',
   },

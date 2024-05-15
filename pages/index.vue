@@ -5,12 +5,22 @@
       <p class="text-gray-600 text-sm">Acessar sua conta para continuar</p>
     </div>
 
-    <UForm class="mt-5 space-y-3" @submit="onSubmit" :state="state">
-      <UFormGroup name="email" label="Email / CPF">
-        <UInput type="email" v-model="state.email" :disabled="loading" />
+    <UForm
+      @submit="onSubmit"
+      class="mt-5 space-y-3"
+      :schema="validations.validateAuthLogin"
+      :state="state"
+    >
+      <UFormGroup name="email" label="Email" eager-validation>
+        <UInput type="text" v-model="state.email" :disabled="loading" />
       </UFormGroup>
 
-      <UFormGroup name="password" label="Senha" class="relative">
+      <UFormGroup
+        name="password"
+        label="Senha"
+        class="relative"
+        eager-validation
+      >
         <UInput
           :type="showPassword ? 'text' : 'password'"
           :disabled="loading"
@@ -42,7 +52,13 @@
       </UFormGroup>
 
       <div>
-        <UButton class="w-full mt-3 justify-center" color="black" :disabled="loading" :loading="loading">
+        <UButton
+          class="w-full mt-3 justify-center"
+          color="black"
+          type="submit"
+          :disabled="loading"
+          :loading="loading"
+        >
           Entrar
         </UButton>
       </div>
@@ -68,6 +84,13 @@ const loading = ref<boolean>(false);
 const onSubmit = async () => {
   try {
     loading.value = true;
+
+    const { data, error } = await useFetch('/api/auth/login', {
+      method: 'POST',
+      body: { ...state },
+    });
+
+    console.log(data.value, error.value)
   } catch (e) {
     console.log(e);
   } finally {

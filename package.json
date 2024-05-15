@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "bcrypt": "^5.1.1",
+    "firebase": "^10.12.0",
+    "jsonwebtoken": "^9.0.2",
+    "maska": "^2.1.11",
     "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
     "prettier": "^3.2.5",
@@ -19,6 +23,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@nuxt/ui": "^2.16.0"
+    "@nuxt/ui": "^2.16.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6"
   }
 }
